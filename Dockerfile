@@ -2,6 +2,6 @@ FROM  python
 
 WORKDIR /app
 
-COPY . ./app
+COPY . /app
 
 CMD ["python", "rng.py"]
