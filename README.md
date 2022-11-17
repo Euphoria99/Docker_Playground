@@ -27,13 +27,13 @@ docker run --name multifrontendC  --rm -p 3000:3000   -it multifrontend
 1)MongoDB
 
 ```
-docker run --name mongodb -d --rm  --network multicontainer  mongo
+docker run --name mongodb -d --rm -v data:/data/db  -e MONGO_INITDB_ROOT_USERNAME=pavan -e MONGO_INITDB_ROOT_PASSWORD=pavan --network multicontainer  mongo
 ```
 
-<br/>
 Exposing port -p 27017:27017 is optional
 
 <br/>
+
 2)Backend
 
 ```
