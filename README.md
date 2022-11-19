@@ -71,7 +71,8 @@ docker run
    -d \
    --rm \
    -v F:/projects/Docker/docker_playground/backend/:/app \
-   -v logsmultibackend:/app/logs -v /app/node_modules
+   -v logsmultibackend:/app/logs
+   -v /app/node_modules
    -p 80:80 \
    --network multicontainer \
    -e MONGODB_PASSWORD=pavan \
