@@ -47,3 +47,52 @@ React needs the ports of the nodejs app to be exposed inorder to communicate
 ```
 docker run --name multifrontendC  -p 3000:3000 --rm --network multicontainer  -it multifrontend
 ```
+
+## With all options like networks, environment variables , volumes and bind mounts.
+
+1)MongoDB
+
+```
+docker run --name mongodb \
+        -d \
+        --rm \
+        -v data:/data/db \
+        -e MONGO_INITDB_ROOT_USERNAME=pavan \
+        -e MONGO_INITDB_ROOT_PASSWORD=pavan \
+        --network multicontainer  \
+        mongo
+```
+
+2)Backend
+
+```
+docker run
+   --name multibackendC  \
+   -d \
+   --rm \
+   -v F:/projects/Docker/docker_playground/backend/:/app \
+   -v logsmultibackend:/app/logs -v /app/node_modules
+   -p 80:80 \
+   --network multicontainer \
+   -e MONGODB_PASSWORD=pavan \
+   -e MONGODB_USERNAME=pavan \
+    multibackend \
+```
+
+3)Frontend
+
+```
+docker run
+    --name multifrontendC \
+    -v F:/projects/Docker/docker_playground/frontend/src/:/app/src \
+    -p 3000:3000 \
+    --rm \
+    --network multicontainer \
+    -it multifrontend \
+```
+
+Stop all containers
+
+```
+docker stop mongodb multibackendC multifrontendC
+```
