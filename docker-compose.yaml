@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: pavan
+    #   - MONGO_INITDB_ROOT_USERNAME=pavan
+    #   - MONGO_INITDB_ROOT_PASSWORD=pavan
+    env_file:
+      - ./env/mongo.env
+    networks:
+      - multicontainer
+
+volumes:
+  data:
+
+networks:
+  multicontainer:
