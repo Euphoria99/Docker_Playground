@@ -13,8 +13,30 @@ services:
     networks:
       - multicontainer
 
+  backend:
+    build: ./backend
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    #   args:
+    #     some-args: 1
+    ports:
+      - "80:80"
+    volumes:
+      - logsmultibackend:/app/logs
+      - ./backend:/app
+      # with docker compose,using bind mounts becomes easier.we can use relative path, relavant from the yaml file
+      - /app/node_modules
+      # for anoymous volumes we directly specify this way.
+    env_file:
+      - ./env/backend.env
+    networks:
+      - multicontainer
+    depends_on:
+      - mongodb
+
 volumes:
   data:
-
+  logsmultibackend:
 networks:
   multicontainer:
