@@ -12,6 +12,7 @@ services:
       - ./env/mongo.env
     networks:
       - multicontainer
+    container_name: mongodb
 
   backend:
     build: ./backend
@@ -34,6 +35,7 @@ services:
       - multicontainer
     depends_on:
       - mongodb
+    container_name: multibackendC
 
   frontend:
     build: ./frontend
@@ -47,6 +49,7 @@ services:
     tty: true
     depends_on:
       - backend
+    container_name: multifrontendC
 
 volumes:
   data:
