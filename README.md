@@ -97,3 +97,25 @@ Stop all containers
 ```
 docker stop mongodb multibackendC multifrontendC
 ```
+
+## Easy and handy commands
+
+To delete all images
+
+```
+docker rmi $(docker images -a)
+```
+
+To delete containers which are in exited state
+
+```
+docker rm $(docker ps -a -f status=exited -q)
+```
+
+To delete containers which are in created state
+
+```
+docker rm $(docker ps -a -f status=created -q)
+```
+
+NOTE: Remove all the containers then remove the images
